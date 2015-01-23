@@ -3,7 +3,8 @@
 @logo-color: #FE0000;
 //@logo-color: #E64F32; // Oh yuck!
 @highlight-main: @logo-color;
-@header-bg: #222222;
+@header-bg: darken(@page-background, 6%);
+@header-main-bg: #222222;
 
 @landing-fg: #efefef;
 @landing-bg: #111;
@@ -11,9 +12,10 @@
 @landing-menu-fg: @landing-fg;
 @landing-menu-active: @highlight-main;
 
-@menu-bg: lighten(@header-bg, 5%);
-@menu-fg: #ccc;
+@menu-bg: lighten(@header-main-bg, 5%);
+@menu-fg: #eeeeee;
 @menu-shadow: #000;
+@menu-active-bg: #000;
 
 
 // Make use of sticky footer.
@@ -22,4 +24,17 @@ html { .sticky-footer(); }
 // Have a landing page
 body.main {
 	.landing-page();
+	header {
+		background: @header-main-bg;
+	}
+
+	#content {
+		a:link {
+			color: lighten(@highlight-main, 10%);
+		}
+		font-size:1.3em;
+		p, ul {
+			max-width: 42em;
+		}
+	}
 }

@@ -50,8 +50,8 @@
 						<% 
 						menu = {}
 						menu.merge! "/index.html" => "Home"
-						menu.merge! "/contributing.html" => "Contributing"
-						menu.merge! "https://github.com/crossbridge-community" => "Code"
+						#menu.merge! "/contributing.html" => "Contributing"
+						menu.merge! "https://github.com/crossbridge-community" => "Github"
 						
 						menu.each do |k,v| %>
 						<li<%= (is_current_page k) ? ' class="active"' : "" %>><%= link_to v,k %></li>
