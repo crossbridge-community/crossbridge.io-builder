@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="theme-color" content="#A53F0E">
+		<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+		<%# Use title if it's in the page YAML frontmatter %>
+		<title><%= 
+			#title = current_page.data.title 
+			title = discover_title
+			if title
+				"#{title} &mdash; "
+			else
+				"" 
+			end
+			%><%= site_name %></title>
+		<% if current_page.data.desc %>
+			<meta name="description" content="<%= current_page.data.desc %>"/>
+		<% end %>
+
+		<meta name="viewport" content="width=devide-width, initial-scale=1" />
+		<%#link href='http://fonts.googleapis.com/css?family=Arimo:regular,bold' rel='stylesheet' type='text/css' /%>
+		<%#link rel="icon" type="image/vnd.microsoft.icon" href="/design/favicon.ico" / %>
+		<%#link rel="icon" type="image/png" href="/design/favicon.png" / %>
+
+		<%#
+			For usage of less.js to live-reload your less styles, 
+			YOU WILL NEED TO DISABLE LOADING OF THE less gem.
+		%>
+		<% unless config[:with_lessjs] %>
+			<%= stylesheet_link_tag 'styles' %>
+		<% else %>
+			<link rel="stylesheet/less" type="text/css" href="<%= url_for("design/site.css.less") %>" />
+			<script>
+				less = {
+					env: "development"
+				};
+			</script>
+			<script src="design/less.min.js" type="text/javascript"></script>
+			<script>less.watch();</script>
+		<% end %>
+	</head>
+	<body class="<%= current_page.data.body_class %> <%= page_classes %>">
+		<div id="container">
+			<header>
+				<nav>
+					<ul>
+
+						<% 
+						menu = {}
+						menu.merge! "/index.html" => "Home"
+						menu.merge! "/contributing.html" => "Contributing"
+						menu.merge! "https://github.com/crossbridge-community" => "Code"
+						
+						menu.each do |k,v| %>
+						<li<%= (is_current_page k) ? ' class="active"' : "" %>><%= link_to v,k %></li>
+						<% end %>
+
+					</ul>
+				</nav>
+				<div id="menutop">&nbsp;</div><!-- dirty -->
+				<a id="logo" href="<%= url_for("index.html") %>">
+				<% if current_page.data.body_class == "main" %>
+					<h1 class="big"><img src="<%= url_for("design/crossbridge-170h.png") %>" alt="<%= project_name %>" /></h1>
+				<% else %>
+					<h1><img src="<%= url_for("design/crossbridge-70h.png") %>" alt="<%= project_name %>" /></h1>
+				<% end %>
+				</a>
+			</header>
+			<div id="holder">
+				<div id="content"><%= yield %></div>
+			</div>
+
+			<footer>
+				<span id="copyright">&copy;2015 The <%= project_name %> Community &amp; contributors </span>
+			</footer>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+@import url('anherobase/base.less');
+
+@logo-color: #FE0000;
+//@logo-color: #E64F32; // Oh yuck!
+@highlight-main: @logo-color;
+@header-bg: #222222;
+
+@landing-fg: #efefef;
+@landing-bg: #111;
+@landing-menu-bg: lighten(@landing-bg, 5%);
+@landing-menu-fg: @landing-fg;
+@landing-menu-active: @highlight-main;
+
+@menu-bg: lighten(@header-bg, 5%);
+@menu-fg: #ccc;
+@menu-shadow: #000;
+
+
+// Make use of sticky footer.
+html { .sticky-footer(); }
+
+// Have a landing page
+body.main {
+	.landing-page();
+}
