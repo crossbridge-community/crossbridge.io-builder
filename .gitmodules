@@ -1,0 +1,3 @@
+[submodule "source/design/anherobase"]
+	path = source/design/anherobase
+	url = git@git.anhero.net:anhero/anherobase.git
