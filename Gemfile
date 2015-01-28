@@ -17,3 +17,6 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 gem 'therubyracer'
 # Comment out when setting config with_lessjs
 gem 'less'
+
+# For the doc update script.
+gem 'nokogiri'

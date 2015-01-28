@@ -31,40 +31,50 @@
 		<% unless config[:with_lessjs] %>
 			<%= stylesheet_link_tag 'styles' %>
 		<% else %>
-			<link rel="stylesheet/less" type="text/css" href="<%= url_for("design/site.css.less") %>" />
+			<link rel="stylesheet/less" type="text/css" href="<%= url_for("/design/site.css.less") %>" />
 			<script>
 				less = {
 					env: "development"
 				};
 			</script>
-			<script src="design/less.min.js" type="text/javascript"></script>
+			<script src="<%= url_for "/design/less.min.js" %>" type="text/javascript"></script>
 			<script>less.watch();</script>
 		<% end %>
+	<!--[if lt IE 9]><%# Rely on external resources? %>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
 	</head>
 	<body class="<%= current_page.data.body_class %> <%= page_classes %>">
 		<div id="container">
 			<header>
 				<nav>
-					<ul>
-
-						<% 
+					<ul><% 
 						menu = {}
 						menu.merge! "/index.html" => "Home"
-						#menu.merge! "/contributing.html" => "Contributing"
 						menu.merge! "https://github.com/crossbridge-community" => "Github"
+						menu.merge! "/README.html" => "Readme"
+						menu.merge! "/docs/Reference.html" => "Reference"
+						menu.merge! "/docs/samples.html" => "Samples"
+						menu.merge! "/docs/capidocs/index.html" => "C/C++ API Reference"
+						menu.merge! "/docs/apidocs/index.html" => "AS3 API Reference"
+						#menu.merge! "http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" => "Flash API Reference"
+
 						
-						menu.each do |k,v| %>
-						<li<%= (is_current_page k) ? ' class="active"' : "" %>><%= link_to v,k %></li>
-						<% end %>
+						menu.each do |k,v| 
+						%><li<%= (is_current_page k) ? ' class="active"' : "" %>>
+							<%= link_to v,k %>
+						</li><%
+						end %>
 
 					</ul>
 				</nav>
 				<div id="menutop">&nbsp;</div><!-- dirty -->
-				<a id="logo" href="<%= url_for("index.html") %>">
+				<a id="logo" href="<%= url_for("/index.html") %>">
 				<% if current_page.data.body_class == "main" %>
-					<h1 class="big"><img src="<%= url_for("design/crossbridge-170h.png") %>" alt="<%= project_name %>" /></h1>
+					<h1 class="big"><img src="<%= url_for("/design/crossbridge-170h.png") %>" alt="<%= project_name %>" /></h1>
 				<% else %>
-					<h1><img src="<%= url_for("design/crossbridge-70h.png") %>" alt="<%= project_name %>" /></h1>
+					<%#       %><h1><img src="<%= url_for("/design/crossbridge-70h.png") %>" alt="<%= project_name %>" /></h1>
 				<% end %>
 				</a>
 			</header>
