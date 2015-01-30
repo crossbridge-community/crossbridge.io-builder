@@ -51,14 +51,15 @@
 				<nav>
 					<ul><% 
 						menu = {}
-						menu.merge! "/index.html" => "Home"
+						menu.merge! "/index.html"                  => "Home"
 						menu.merge! "https://github.com/crossbridge-community/crossbridge" => "Github"
-						menu.merge! "/README.html" => "Readme"
-						menu.merge! "/docs/Reference.html" => "Reference"
-						menu.merge! "/docs/samples.html" => "Samples"
-						menu.merge! "/docs/capidocs/index.html" => "C/C++ API Reference"
-						menu.merge! "/docs/apidocs/index.html" => "AS3 API Reference"
-						#menu.merge! "http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" => "Flash API Reference"
+						menu.merge! "http://forum.crossbridge.io/" => "Forum"
+						menu.merge! "/README.html"                 => "Readme"
+						menu.merge! "/docs/Reference.html"         => "Reference"
+						menu.merge! "/docs/samples.html"           => "Samples"
+						menu.merge! "/docs/capidocs/index.html"    => "C/C++ API"
+						menu.merge! "/docs/apidocs/index.html"     => "AS3 API"
+						menu.merge! "http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/" => "Flash API"
 
 						
 						menu.each do |k,v| 
